@@ -6,33 +6,33 @@
 template<typename T>
 class TPQueue {
  private:
-    T* array;
+    T* arr;
     int size;
     int begin, end;
     int count;
 
  public:
     TPQueue() :
-        size(1000),
+        size(100),
         begin(0), end(0), count(0) {
-        array = new T[size + 1];
+        arr = new T[size + 1];
     }
     ~TPQueue() {
-        delete[] array;
+        delete[] arr;
     }
 
     void push(const T& item) {
         assert(count < size);
         if (end != 0) {
-            array[end] = item;
+            arr[end] = item;
             for (int x = end - 1; x >= begin; x--) {
-                if (item.prior > array[x].prior) {
-                    array[x + 1] = array[x];
-                    array[x] = item;
+                if (item.prior > arr[x].prior) {
+                    arr[x + 1] = arr[x];
+                    arr[x] = item;
                 }
             }
         } else {
-            array[begin] = item;
+            arr[begin] = item;
         }
         end++;
         count++;
@@ -42,7 +42,7 @@ class TPQueue {
     T pop() {
         assert(count > 0);
 
-        T item = array[begin++];
+        T item = arr[begin++];
         count--;
 
         if (begin > size)
@@ -52,7 +52,7 @@ class TPQueue {
     }
     T get() const {
         assert(count > 0);
-        return array[begin];
+        return arr[begin];
     }
     bool isEmpty() const {
         return count == 0;
