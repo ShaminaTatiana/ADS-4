@@ -25,10 +25,10 @@ class TPQueue {
         assert(count < size);
         if (end != 0) {
             arr[end] = item;
-            for (int x = end - 1; x >= begin; x--) {
-                if (item.prior > arr[x].prior) {
-                    arr[x + 1] = arr[x];
-                    arr[x] = item;
+            for (int i = end - 1; i >= begin; i--) {
+                if (item.prior > arr[i].prior) {
+                    arr[i + 1] = arr[i];
+                    arr[i] = item;
                 }
             }
         } else {
